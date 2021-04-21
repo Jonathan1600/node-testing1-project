@@ -42,12 +42,12 @@ function trimPropertiesMutation(obj) {
  */
 function findLargestInteger(integers) {
   // ✨ implement
-  let bigNum = {}
+  let bigNum = null
   integers.forEach(obj => {
-    if (Object.keys(bigNum).length === 0) {
-      bigNum = { [Object.keys(obj)[0]]: obj[Object.keys(obj)[0]] }
-    } else if (bigNum[Object.keys(bigNum)[0]] < obj[Object.keys(obj)[0]]) {
-      bigNum = { [Object.keys(obj)[0]]: obj[Object.keys(obj)[0]] }
+    if (bigNum === null) {
+      bigNum = obj[Object.keys(obj)[0]]
+    } else if (bigNum < obj[Object.keys(obj)[0]]) {
+      bigNum = obj[Object.keys(obj)[0]]
     }
   })
 
@@ -221,14 +221,18 @@ class Car {
  */
 function isEvenNumberAsync(number) {
   // ✨ implement
-  let isEven = null
-  if (number % 2 === 0) {
-    isEven = true
-  } else {
-    isEven = false
+
+  const evenCheck = (num) => {
+    if (!num || typeof num !== "number") {
+      return "number must be a number"
+    } else if (num % 2 === 0) {
+      return true
+    } else {
+      return false
+    }
   }
 
-  return Promise.resolve(isEven)
+  return Promise.resolve(evenCheck(number))
 }
 
 module.exports = {
